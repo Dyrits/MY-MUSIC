@@ -118,7 +118,7 @@ function updateVisual() {
     if (image.src.includes(currentTrack.photo)) {
       image.style.padding = "5px";
       image.style.borderRadius = "25px 0 25px 0";
-      image.style.transform = "translateY(-4px) scale(1.075)"
+      image.style.transform = "translateY(-4px) scale(1.075) rotate(1.5deg)"
     } else {
       image.style.borderRadius = "";
       image.style.border = "";
