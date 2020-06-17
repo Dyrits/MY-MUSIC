@@ -9,14 +9,13 @@ const trackPosition = document.querySelector("#track-position");
 const previous = document.querySelector("#previous");
 const next = document.querySelector("#next");
 const sourceMP3 = document.querySelector("#source-MP3");
-// const sourceOGG = document.querySelector("#source-OGG");
-// const sourceWAV = document.querySelector("#source-WAV");
+const sourceOGG = document.querySelector("#source-OGG");
+const sourceWAV = document.querySelector("#source-WAV");
 let currentTrack = media[0];
 const covers = document.querySelector("#covers");
 
-
-
 loadTrack();
+
 setInterval(() => {
   if (trackPosition.max !== Math.floor(audioPlayer.duration)) {
     trackPosition.max = Math.floor(audioPlayer.duration);
@@ -27,10 +26,20 @@ setInterval(() => {
   }
 }, 50)
 
+// Track position
+trackPosition.addEventListener("input", () => {
+  audioPlayer.currentTime = trackPosition.value;
+})
+
 Array.from(covers.children).forEach((card, index) => {
   card.addEventListener("click", () => {
     currentTrack = media[index];
     loadTrack();
+  });
+  card.addEventListener("dblclick", () => {
+    currentTrack = media[index];
+    loadTrack();
+    play();
   });
 })
 
@@ -56,30 +65,27 @@ volumeUp.addEventListener("click", () => {
 
 // Play/Pause
 playPause.addEventListener("click", () => {
-  if (status === "Pause") {
-    playPause.firstChild.className = "fas fa-pause";
-    status = "Play";
-    audioPlayer.play();
-  } else if (status === "Play") {
-    playPause.firstChild.className = "fas fa-play";
-    status = "Pause";
-    audioPlayer.pause();
-  }
+  if (status === "Pause") { play(); }
+  else if (status === "Play") { pause(); }
 })
 
-// Track position
-trackPosition.addEventListener("input", () => {
-  audioPlayer.currentTime = trackPosition.value;
-})
+function play() {
+  playPause.firstChild.className = "fas fa-pause";
+  status = "Play";
+  audioPlayer.play();
+}
 
+function pause() {
+  playPause.firstChild.className = "fas fa-play";
+  status = "Pause";
+  audioPlayer.pause();
+}
 
 // Previous and Next Song
 function previousTrack() {
-  if (currentTrack === media[0]) {
-    currentTrack = media[media.length - 1];
-  } else {
-    currentTrack = media[media.indexOf(currentTrack) - 1];
-  }
+  if (audioPlayer.currentTime > audioPlayer.duration / 5) { loadTrack(); }
+  else if (currentTrack === media[0]) { currentTrack = media[media.length - 1]; }
+  else { currentTrack = media[media.indexOf(currentTrack) - 1]; }
   loadTrack()
 }
 
@@ -95,8 +101,8 @@ function nextTrack() {
 // Update visual and load new track:
 function loadTrack() {
   sourceMP3.src = `./media/${currentTrack.file}.mp3`
-  // sourceOGG.src = `./media/${currentTrack.file}.ogg`
-  // sourceWAV.src = `./media/${currentTrack.file}.wav`
+  sourceOGG.src = `./media/${currentTrack.file}.ogg`
+  sourceWAV.src = `./media/${currentTrack.file}.wav`
   updateVisual();
   audioPlayer.load()
   audioPlayer.currentTime = 0;
