@@ -1,17 +1,10 @@
 const audioPlayer = document.querySelector("#audio-player");
 const volume = document.querySelector("#volume");
-volume.value = 1;
-const volumeDown = document.querySelector("#volume-down");
-const volumeUp = document.querySelector("#volume-up");
 const playPause = document.querySelector("#play-pause");
-let status = "Pause";
 const trackPosition = document.querySelector("#track-position");
-const previous = document.querySelector("#previous");
-const next = document.querySelector("#next");
-const sourceMP3 = document.querySelector("#source-MP3");
-const sourceOGG = document.querySelector("#source-OGG");
-const sourceWAV = document.querySelector("#source-WAV");
 let currentTrack = media[0];
+let status = "Pause";
+volume.value = 1;
 const covers = document.querySelector("#covers");
 
 loadTrack();
@@ -43,20 +36,20 @@ Array.from(covers.children).forEach((card, index) => {
   });
 })
 
-previous.onclick = previousTrack;
-next.onclick = nextTrack;
+document.querySelector("#previous").onclick = previousTrack;
+document.querySelector("#next").onclick = nextTrack;
 
 // Volume
 volume.oninput = () => audioPlayer.volume = volume.value;
 
-volumeDown.addEventListener("click", () => {
+document.querySelector("#volume-down").addEventListener("click", () => {
   if (audioPlayer.volume > 0) {
     audioPlayer.volume -= 0.05;
     volume.value = audioPlayer.volume;
   }
 })
 
-volumeUp.addEventListener("click", () => {
+document.querySelector("#volume-up").addEventListener("click", () => {
   if (audioPlayer.volume < 1) {
     audioPlayer.volume += 0.05;
     volume.value = audioPlayer.volume;
@@ -100,9 +93,9 @@ function nextTrack() {
 
 // Update visual and load new track:
 function loadTrack() {
-  sourceMP3.src = `./media/${currentTrack.file}.mp3`
-  sourceOGG.src = `./media/${currentTrack.file}.ogg`
-  sourceWAV.src = `./media/${currentTrack.file}.wav`
+  document.querySelector("#source-MP3").src = `./media/${currentTrack.file}.mp3`
+  document.querySelector("#source-OGG").src = `./media/${currentTrack.file}.ogg`
+  document.querySelector("#source-WAV").src = `./media/${currentTrack.file}.wav`
   updateVisual();
   audioPlayer.load()
   audioPlayer.currentTime = 0;
