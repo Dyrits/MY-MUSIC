@@ -25,6 +25,9 @@ $(function() {
     }
   }, 50);
 
+  // Load
+  loadTrack();
+
 
   // EVENTS //
 
