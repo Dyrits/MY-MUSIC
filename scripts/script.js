@@ -1,128 +1,138 @@
-const audioPlayer = document.querySelector("#audio-player");
-const volume = document.querySelector("#volume");
-volume.value = 1;
-const volumeDown = document.querySelector("#volume-down");
-const volumeUp = document.querySelector("#volume-up");
-const playPause = document.querySelector("#play-pause");
-let status = "Pause";
-const trackPosition = document.querySelector("#track-position");
-const previous = document.querySelector("#previous");
-const next = document.querySelector("#next");
-const sourceMP3 = document.querySelector("#source-MP3");
-const sourceOGG = document.querySelector("#source-OGG");
-const sourceWAV = document.querySelector("#source-WAV");
-let currentTrack = media[0];
-const covers = document.querySelector("#covers");
+// VARIABLES //
+const player = document.querySelector("#audio-player");
+let track = media[0];
 
-loadTrack();
+// jQuery VARIABLES //
+const $volume = $("#volume");
+const $position = $("#track-position");
 
-setInterval(() => {
-  if (trackPosition.max !== Math.floor(audioPlayer.duration)) {
-    trackPosition.max = Math.floor(audioPlayer.duration);
-  }
-  trackPosition.value = audioPlayer.currentTime;
-  if (audioPlayer.currentTime === audioPlayer.duration) {
+
+// READY //
+
+$(function() {
+  // INITIALIZATION //
+
+  // Volume
+  $("#volume").val(1);
+
+  // Refresh
+  setInterval(() => {
+    if ($position.attr("max") !== Math.floor(player.duration)) {
+      $position.attr("max", Math.floor(player.duration));
+    }
+    $position.val(player.currentTime);
+    if (player.currentTime === player.duration) {
+      nextTrack();
+    }
+  }, 50);
+
+
+  // EVENTS LISTENER  //
+
+  // BUTTON >> Volume Down
+  $("#volume-down").on("click", () => {
+    if (player.volume > 0) {
+      player.volume -= 0.05;
+      adjustVolume()
+    }
+  })
+
+  // BUTTON >> Volume Up
+  $("#volume-up").on("click", () => {
+    if (player.volume < 1) {
+      player.volume += 0.05;
+      adjustVolume()
+    }
+  })
+
+  // RANGE >> Volume
+  $volume.on("input", () => {
+    player.volume = $volume.val();
+  });
+
+  // BUTTON >> Play/Pause
+  $("#play-pause").on("click", () => {
+    player.paused ? play() : pause();
+  })
+
+  // BUTTON >> Next
+  $("#next").on("click", () => {
     nextTrack();
-  }
-}, 50)
-
-// Track position
-trackPosition.addEventListener("input", () => {
-  audioPlayer.currentTime = trackPosition.value;
-})
-
-Array.from(covers.children).forEach((card, index) => {
-  card.addEventListener("click", () => {
-    currentTrack = media[index];
     loadTrack();
-  });
-  card.addEventListener("dblclick", () => {
-    currentTrack = media[index];
+  })
+  $("#previous").on("click", () => {
+    previousTrack();
     loadTrack();
-    play();
-  });
+  })
+
+  // RANGE >> Track position
+  $position.on("input", () => {
+    player.currentTime = $position.val();
+  })
+
+  // CARDS >> Select track
+  $("#covers").children().each((index, card) => {
+    $(card).on("click", () => {
+      track = media[index];
+      loadTrack();
+    })
+    $(card).on("dblclick", () => {
+      track = media[index];
+      loadTrack();
+      play();
+    })
+  })
+
 })
 
-previous.onclick = previousTrack;
-next.onclick = nextTrack;
 
-// Volume
-volume.oninput = () => audioPlayer.volume = volume.value;
+// FUNCTIONS  //
 
-volumeDown.addEventListener("click", () => {
-  if (audioPlayer.volume > 0) {
-    audioPlayer.volume -= 0.05;
-    volume.value = audioPlayer.volume;
-  }
-})
+// Adjust RANGE >> Volume
+function adjustVolume() { $volume.val(player.volume); }
 
-volumeUp.addEventListener("click", () => {
-  if (audioPlayer.volume < 1) {
-    audioPlayer.volume += 0.05;
-    volume.value = audioPlayer.volume;
-  }
-})
-
-// Play/Pause
-playPause.addEventListener("click", () => {
-  if (status === "Pause") { play(); }
-  else if (status === "Play") { pause(); }
-})
-
+// Play
 function play() {
-  playPause.firstChild.className = "fas fa-pause";
-  status = "Play";
-  audioPlayer.play();
+  $(".fa-play").toggleClass("fa-pause fa-play");
+  player.play();
 }
 
+// Pause
 function pause() {
-  playPause.firstChild.className = "fas fa-play";
-  status = "Pause";
-  audioPlayer.pause();
+  $(".fa-pause").toggleClass("fa-pause fa-play");
+  player.pause();
 }
 
-// Previous and Next Song
-function previousTrack() {
-  if (audioPlayer.currentTime > audioPlayer.duration / 5) { loadTrack(); }
-  else if (currentTrack === media[0]) { currentTrack = media[media.length - 1]; }
-  else { currentTrack = media[media.indexOf(currentTrack) - 1]; }
-  loadTrack()
-}
+// Next/Previous track
+function nextTrack() { track = track === media[media.length - 1] ? media[0] : media[media.indexOf(track) + 1]; }
+function previousTrack() { track = player.currentTime > player.duration / 5 ?
+  track : track === media[0] ? media[media.length - 1] : media[media.indexOf(track) - 1]; }
 
-function nextTrack() {
-  if (currentTrack === media[media.length - 1]) {
-    currentTrack = media[0]
-  } else {
-    currentTrack = media[media.indexOf(currentTrack) + 1];
-  }
-  loadTrack()
-}
-
-// Update visual and load new track:
+// Load track
 function loadTrack() {
-  sourceMP3.src = `./media/${currentTrack.file}.mp3`
-  sourceOGG.src = `./media/${currentTrack.file}.ogg`
-  sourceWAV.src = `./media/${currentTrack.file}.wav`
-  updateVisual();
-  audioPlayer.load()
-  audioPlayer.currentTime = 0;
-  if (status === "Play") {
-    audioPlayer.play();
-  }
+  $("#source-MP3").attr("src", `./media/${track.file}.mp3`);
+  $("#source-OGG").attr("src", `./media/${track.file}.ogg`);
+  $("#source-WAV").attr("src", `./media/${track.file}.wav`);
+  updateInfo();
+  let playing = !player.paused;
+  player.load();
+  if (playing) { player.play(); }
 }
 
-function updateVisual() {
-  document.querySelector("#title").textContent = currentTrack.name;
-  document.querySelector("#artist").textContent = currentTrack.artist;
-  document.querySelectorAll(".card-img-top").forEach(image => {
-    if (image.src.includes(currentTrack.photo)) {
-      image.style.padding = "5px";
-      image.style.borderRadius = "25px 0 25px 0";
-      image.style.transform = "translateY(-4px) scale(1.075) rotate(1.5deg)"
+// Update track information
+function updateInfo() {
+  $("#title").text(track.name);
+  $("#artist").text(track.artist);
+  $(".card-img-top").each((index, image) => {
+    if ($(image).attr("src").includes(track.photo)) {
+      $(image).css("padding", "5px");
+      $(image).css("border-radius", "25px 0 25px 0");
+      $(image).css("transform", "translateY(-4px) scale(1.075) rotate(1.5deg)")
     } else {
-      image.style.borderRadius = "";
-      image.style.border = "";
-      image.style.transform = "";
+      $(image).css("padding", "");
+      $(image).css("border-radius", "");
+      $(image).css("transform", "")
     }
   })
 }
+
