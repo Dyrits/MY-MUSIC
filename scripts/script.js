@@ -26,7 +26,7 @@ $(function() {
   }, 50);
 
 
-  // EVENTS LISTENER  //
+  // EVENTS //
 
   // BUTTON >> Volume Down
   $("#volume-down").on("click", () => {
