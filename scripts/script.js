@@ -8,7 +8,6 @@ const $position = $("#track-position");
 
 
 // READY //
-
 $(function() {
   // INITIALIZATION //
 
