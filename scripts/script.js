@@ -5,7 +5,6 @@ const trackPosition = document.querySelector("#track-position");
 let currentTrack = media[0];
 let status = "Pause";
 volume.value = 1;
-const covers = document.querySelector("#covers");
 
 loadTrack();
 
@@ -24,7 +23,7 @@ trackPosition.addEventListener("input", () => {
   audioPlayer.currentTime = trackPosition.value;
 })
 
-Array.from(covers.children).forEach((card, index) => {
+document.querySelectorAll(".card").forEach((card, index) => {
   card.addEventListener("click", () => {
     currentTrack = media[index];
     loadTrack();
