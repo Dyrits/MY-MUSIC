@@ -28,7 +28,7 @@ URL: https://codepen.io/Dyrits/full/NWxRgjj
 Completed
 
 #### Last update
-17/06/2020
+19/06/2020
 
 #### Last update (README.md)
-17/06/2020
+19/06/2020
