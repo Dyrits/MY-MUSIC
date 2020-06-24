@@ -67,17 +67,12 @@ function pause() {
 
 function previousTrack() {
   if (audioPlayer.currentTime > audioPlayer.duration / 5) { loadTrack(); }
-  else if (currentTrack === media[0]) { currentTrack = media[media.length - 1]; }
-  else { currentTrack = media[media.indexOf(currentTrack) - 1]; }
+  else { currentTrack = currentTrack === media[0] ? media[media.length - 1] : media[media.indexOf(currentTrack) - 1]; }
   loadTrack()
 }
 
 function nextTrack() {
-  if (currentTrack === media[media.length - 1]) {
-    currentTrack = media[0]
-  } else {
-    currentTrack = media[media.indexOf(currentTrack) + 1];
-  }
+  currentTrack = currentTrack === media[media.length - 1] ? media[0] : media[media.indexOf(currentTrack) + 1];
   loadTrack()
 }
 
