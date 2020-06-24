@@ -37,113 +37,107 @@
 </header>
 
 <main class="shadow-lg mb-5 col-12">
-    <header class="py-4">
-        <div class="row px-4">
-            <div class="col-lg-3">
-                <div class="row">
-                    <button class="btn btn-secondary col-3" id="previous"><i class="fas fa-step-backward"></i></button>
-                    <button class="btn btn-secondary col-4 offset-1" id="play-pause"><i class="fas fa-play"></i>
-                    </button>
-                    <button class="btn btn-secondary col-3 offset-1" id="next"><i class="fas fa-step-forward"></i>
-                    </button>
+    <section class="py-4 row px-4">
+        <div class="col-lg-3">
+            <article class="row">
+                <button class="btn btn-secondary col-3" id="previous"><i class="fas fa-step-backward"></i></button>
+                <button class="btn btn-secondary col-4 offset-1" id="play-pause"><i class="fas fa-play"></i>
+                </button>
+                <button class="btn btn-secondary col-3 offset-1" id="next"><i class="fas fa-step-forward"></i>
+                </button>
+            </article>
+            <br>
+            <article class="row">
+                <button class="btn btn-secondary col-2" id="volume-down"><i class="fas fa-volume-down"></i></button>
+                <div class="col-6 offset-1">
+                    <input type="range" class="form-control-range" id="volume" min="0" max="1" step="0.05">
                 </div>
-                <br>
-                <div class="row">
-                    <button class="btn btn-secondary col-2" id="volume-down"><i class="fas fa-volume-down"></i></button>
-                    <div class="col-6 offset-1">
-                        <input type="range" class="form-control-range" id="volume" min="0" max="1" step="0.05">
-                    </div>
-                    <button class="col-2 offset-1 btn btn-secondary" id="volume-up"><i class="fas fa-volume-up"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="pt-4 pt-lg-0 col-md-6 col-lg-4 offset-lg-1">
-                <h4 id="title">Blue Skies</h4>
-                <h5 id="artist">Silent Partner</h5>
-                <p><input type="range" class="form-control-range" min="0" max="100" id="track-position"></p>
-            </div>
-            <div class="pt-4 pt-lg-0 col-md-6 col-lg-3 offset-lg-1">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
+                <button class="col-2 offset-1 btn btn-secondary" id="volume-up"><i class="fas fa-volume-up"></i>
+                </button>
+            </article>
+        </div>
+        <div class="pt-4 pt-lg-0 col-md-6 col-lg-4 offset-lg-1">
+            <h4 id="title">Blue Skies</h4>
+            <h5 id="artist">Silent Partner</h5>
+            <p><input type="range" class="form-control-range" min="0" max="100" id="track-position"></p>
+        </div>
+        <div class="pt-4 pt-lg-0 col-md-6 col-lg-3 offset-lg-1">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default"><i
                                 class="fas fa-search"></i></span>
-                    </div>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-default" placeholder="Search">
                 </div>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                       aria-describedby="inputGroup-sizing-default" placeholder="Search">
             </div>
         </div>
-    </header>
-    <main>
-        <div class="row px-4">
-            <nav class="px-0 pr-md-2 pl-md-0 col-md-3 col-lg-2">
-                <ul class="pl-0">
-                    <li class="list-group-item">
-                        <a href="">Music</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="">Videos</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="">Podcasts</a>
-                    </li>
-                </ul>
-            </nav>
-            <section class="col-md-9 col-lg-10">
-                <div class="row" id="covers">
-                    <div class="mb-2 card border-light col-6 col-lg-4 col-xl-3">
-                        <img src="./images/1.jpg" class="card-img-top" alt="Cover">
-                        <div class="card-body text-center d-none d-sm-block">
-                            <h5 class="card-title">Blue Skies</h5>
-                            <p class="card-text">Silent Partner</p>
-                        </div>
-                    </div>
-                    <div class="mb-2 card border-light col-6 col-lg-4 col-xl-3">
-                        <img src="./images/2.jpg" class="card-img-top" alt="Cover">
-                        <div class="card-body text-center d-none d-sm-block">
-                            <h5 class="card-title">Cartoon Hoedown</h5>
-                            <p class="card-text">Media Right Production</p>
-                        </div>
-                    </div>
-                    <div class="mb-2 card border-light col-6 col-lg-4 col-xl-3">
-                        <img src="./images/3.jpg" class="card-img-top" alt="Cover">
-                        <div class="card-body text-center d-none d-sm-block">
-                            <h5 class="card-title">Earthy Crust</h5>
-                            <p class="card-text">Jingle Punks</p>
-                        </div>
-                    </div>
-                    <div class="mb-2 card border-light col-6 col-lg-4 col-xl-3">
-                        <img src="./images/4.jpg" class="card-img-top" alt="Cover">
-                        <div class="card-body text-center d-none d-sm-block">
-                            <h5 class="card-title">Hold On a Minute</h5>
-                            <p class="card-text">Silent Partner</p>
-                        </div>
-                    </div>
-                    <div class="mb-2 card border-light col-6 col-lg-4 col-xl-3">
-                        <img src="./images/5.jpg" class="card-img-top" alt="Cover">
-                        <div class="card-body text-center d-none d-sm-block">
-                            <h5 class="card-title">John Dunbar Thème</h5>
-                            <p class="card-text">City Of Prague Philharmonic</p>
-                        </div>
-                    </div>
-                    <div class="mb-2 card border-light col-6 col-lg-4 col-xl-3">
-                        <img src="./images/6.jpg" class="card-img-top" alt="Cover">
-                        <div class="card-body text-center d-none d-sm-block">
-                            <h5 class="card-title">Stay With You</h5>
-                            <p class="card-text">Silent Partner</p>
-                        </div>
-                    </div>
-                    <div class="mb-2 card border-light col-6 col-lg-4 col-xl-3">
-                        <img src="./images/7.jpg" class="card-img-top" alt="Cover">
-                        <div class="card-body text-center d-none d-sm-block">
-                            <h5 class="card-title">Symphony No 5 by Beethoven</h5>
-                            <p class="card-text">Beethoven</p>
-                        </div>
-                    </div>
+    </section>
+    <section class="row px-4">
+        <nav class="px-0 pr-md-2 pl-md-0 col-md-3 col-lg-2">
+            <ul class="pl-0">
+                <li class="list-group-item">
+                    <a href="">Music</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="">Videos</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="">Podcasts</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="col-md-9 col-lg-10 row">
+            <article class="mb-2 card border-light col-6 col-lg-4 col-xl-3">
+                <img src="./images/1.jpg" class="card-img-top" alt="Cover">
+                <div class="card-body text-center d-none d-sm-block">
+                    <h5 class="card-title">Blue Skies</h5>
+                    <p class="card-text">Silent Partner</p>
                 </div>
-            </section>
+            </article>
+            <article class="mb-2 card border-light col-6 col-lg-4 col-xl-3">
+                <img src="./images/2.jpg" class="card-img-top" alt="Cover">
+                <div class="card-body text-center d-none d-sm-block">
+                    <h5 class="card-title">Cartoon Hoedown</h5>
+                    <p class="card-text">Media Right Production</p>
+                </div>
+            </article>
+            <article class="mb-2 card border-light col-6 col-lg-4 col-xl-3">
+                <img src="./images/3.jpg" class="card-img-top" alt="Cover">
+                <div class="card-body text-center d-none d-sm-block">
+                    <h5 class="card-title">Earthy Crust</h5>
+                    <p class="card-text">Jingle Punks</p>
+                </div>
+            </article>
+            <article class="mb-2 card border-light col-6 col-lg-4 col-xl-3">
+                <img src="./images/4.jpg" class="card-img-top" alt="Cover">
+                <div class="card-body text-center d-none d-sm-block">
+                    <h5 class="card-title">Hold On a Minute</h5>
+                    <p class="card-text">Silent Partner</p>
+                </div>
+            </article>
+            <article class="mb-2 card border-light col-6 col-lg-4 col-xl-3">
+                <img src="./images/5.jpg" class="card-img-top" alt="Cover">
+                <div class="card-body text-center d-none d-sm-block">
+                    <h5 class="card-title">John Dunbar Thème</h5>
+                    <p class="card-text">City Of Prague Philharmonic</p>
+                </div>
+            </article>
+            <article class="mb-2 card border-light col-6 col-lg-4 col-xl-3">
+                <img src="./images/6.jpg" class="card-img-top" alt="Cover">
+                <div class="card-body text-center d-none d-sm-block">
+                    <h5 class="card-title">Stay With You</h5>
+                    <p class="card-text">Silent Partner</p>
+                </div>
+            </article>
+            <article class="mb-2 card border-light col-6 col-lg-4 col-xl-3">
+                <img src="./images/7.jpg" class="card-img-top" alt="Cover">
+                <div class="card-body text-center d-none d-sm-block">
+                    <h5 class="card-title">Symphony No 5 by Beethoven</h5>
+                    <p class="card-text">Beethoven</p>
+                </div>
+            </article>
         </div>
-    </main>
+    </section>
 </main>
 <footer>
     <audio id="audio-player">
@@ -168,4 +162,3 @@
 <script src="./scripts/script.js"></script>
 </body>
 </html>
-
