@@ -3,20 +3,20 @@ const volume = document.querySelector("#volume");
 const playPause = document.querySelector("#play-pause");
 const trackPosition = document.querySelector("#track-position");
 let currentTrack = media[0];
-let status = "Pause";
-volume.value = 1;
 
+volume.value = audioPlayer.volume;
 loadTrack();
 
 setInterval(() => {
-  if (trackPosition.max !== Math.floor(audioPlayer.duration)) {
-    trackPosition.max = Math.floor(audioPlayer.duration);
-  }
   trackPosition.value = audioPlayer.currentTime;
   if (audioPlayer.currentTime === audioPlayer.duration) {
     nextTrack();
   }
 }, 50)
+
+audioPlayer.onloadeddata = () => {
+  if (audioPlayer.readyState > 1) { trackPosition.max = Math.floor(audioPlayer.duration); }
+}
 
 // Track position
 trackPosition.addEventListener("input", () => {
@@ -29,9 +29,11 @@ document.querySelectorAll(".card").forEach((card, index) => {
     loadTrack();
   });
   card.addEventListener("dblclick", () => {
-    currentTrack = media[index];
-    loadTrack();
-    play();
+    if (audioPlayer.paused) {
+      currentTrack = media[index];
+      loadTrack();
+      play();
+    }
   });
 })
 
@@ -57,23 +59,19 @@ document.querySelector("#volume-up").addEventListener("click", () => {
 
 // Play/Pause
 playPause.addEventListener("click", () => {
-  if (status === "Pause") { play(); }
-  else if (status === "Play") { pause(); }
+  audioPlayer.paused ? play() : pause();
 })
 
 function play() {
   playPause.firstChild.className = "fas fa-pause";
-  status = "Play";
   audioPlayer.play();
 }
 
 function pause() {
   playPause.firstChild.className = "fas fa-play";
-  status = "Pause";
   audioPlayer.pause();
 }
 
-// Previous and Next Song
 function previousTrack() {
   if (audioPlayer.currentTime > audioPlayer.duration / 5) { loadTrack(); }
   else if (currentTrack === media[0]) { currentTrack = media[media.length - 1]; }
@@ -90,17 +88,15 @@ function nextTrack() {
   loadTrack()
 }
 
-// Update visual and load new track:
 function loadTrack() {
   document.querySelector("#source-MP3").src = `./media/${currentTrack.file}.mp3`
   document.querySelector("#source-OGG").src = `./media/${currentTrack.file}.ogg`
   document.querySelector("#source-WAV").src = `./media/${currentTrack.file}.wav`
   updateVisual();
+  let paused = audioPlayer.paused;
   audioPlayer.load()
   audioPlayer.currentTime = 0;
-  if (status === "Play") {
-    audioPlayer.play();
-  }
+  if (!paused) { audioPlayer.play(); }
 }
 
 function updateVisual() {
