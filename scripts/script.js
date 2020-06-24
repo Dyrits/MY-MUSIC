@@ -9,7 +9,7 @@ loadTrack();
 
 setInterval(() => {
   trackPosition.value = audioPlayer.currentTime;
-  if (audioPlayer.currentTime === audioPlayer.duration) { nextTrack(); }
+  audioPlayer.currentTime === audioPlayer.duration && nextTrack();
 }, 50)
 
 audioPlayer.onloadeddata = () => {
@@ -83,7 +83,7 @@ function loadTrack() {
   updateVisual();
   let paused = audioPlayer.paused;
   audioPlayer.load()
-  if (!paused) { audioPlayer.play(); }
+  !paused && audioPlayer.play();
 }
 
 function updateVisual() {
