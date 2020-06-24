@@ -9,16 +9,13 @@ loadTrack();
 
 setInterval(() => {
   trackPosition.value = audioPlayer.currentTime;
-  if (audioPlayer.currentTime === audioPlayer.duration) {
-    nextTrack();
-  }
+  if (audioPlayer.currentTime === audioPlayer.duration) { nextTrack(); }
 }, 50)
 
 audioPlayer.onloadeddata = () => {
   if (audioPlayer.readyState > 1) { trackPosition.max = Math.floor(audioPlayer.duration); }
 }
 
-// Track position
 trackPosition.addEventListener("input", () => {
   audioPlayer.currentTime = trackPosition.value;
 })
