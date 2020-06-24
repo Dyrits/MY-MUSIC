@@ -38,20 +38,16 @@ document.querySelector("#previous").onclick = previousTrack;
 document.querySelector("#next").onclick = nextTrack;
 
 // Volume
-volume.oninput = () => audioPlayer.volume = volume.value;
+volume.oninput = () => { audioPlayer.volume = volume.value; }
 
 document.querySelector("#volume-down").addEventListener("click", () => {
-  if (audioPlayer.volume > 0) {
-    audioPlayer.volume -= 0.05;
+    audioPlayer.volume -= audioPlayer.volume > 0 && 0.05;
     volume.value = audioPlayer.volume;
-  }
 })
 
 document.querySelector("#volume-up").addEventListener("click", () => {
-  if (audioPlayer.volume < 1) {
-    audioPlayer.volume += 0.05;
+    audioPlayer.volume += audioPlayer.volume < 1 && 0.05;
     volume.value = audioPlayer.volume;
-  }
 })
 
 // Play/Pause
@@ -92,7 +88,6 @@ function loadTrack() {
   updateVisual();
   let paused = audioPlayer.paused;
   audioPlayer.load()
-  audioPlayer.currentTime = 0;
   if (!paused) { audioPlayer.play(); }
 }
 
