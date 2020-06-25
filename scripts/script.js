@@ -5,6 +5,7 @@ const trackPosition = document.querySelector("#track-position")
 let currentTrack = media[0];
 
 volume.value = audioPlayer.volume;
+
 loadTrack()
 
 volume.oninput = () => { audioPlayer.volume = volume.value; }
@@ -20,25 +21,22 @@ audioPlayer.onloadeddata = () => {
   }
 }
 
-document.querySelector("#volume-down").addEventListener("click", () => {
+document.querySelector("#volume-down").onclick = () => {
   audioPlayer.volume -= audioPlayer.volume > 0 && 0.05;
   volume.value = audioPlayer.volume;
-})
+}
 
-document.querySelector("#volume-up").addEventListener("click", () => {
+document.querySelector("#volume-up").onclick = () => {
   audioPlayer.volume += audioPlayer.volume < 1 && 0.05;
   volume.value = audioPlayer.volume;
-})
+}
 
-trackPosition.addEventListener("input", () => {
-  audioPlayer.currentTime = trackPosition.value;
-})
+trackPosition.addEventListener.oninput = () => { audioPlayer.currentTime = trackPosition.value; }
 
-playPause.addEventListener("click", () => {
-  audioPlayer.paused ? play() : pause();
-})
+playPause.addEventListener.onclick = () => { audioPlayer.paused ? play() : pause(); }
 
 document.querySelector("#previous").onclick = previousTrack;
+
 document.querySelector("#next").onclick = nextTrack;
 
 document.querySelectorAll(".card").forEach((card, index) => {
