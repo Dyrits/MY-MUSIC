@@ -31,9 +31,9 @@ document.querySelector("#volume-up").onclick = () => {
   volume.value = audioPlayer.volume;
 }
 
-trackPosition.addEventListener.oninput = () => { audioPlayer.currentTime = trackPosition.value; }
+trackPosition.oninput = () => { audioPlayer.currentTime = trackPosition.value; }
 
-playPause.addEventListener.onclick = () => { audioPlayer.paused ? play() : pause(); }
+playPause.onclick = () => { audioPlayer.paused ? play() : pause(); }
 
 document.querySelector("#previous").onclick = previousTrack;
 
