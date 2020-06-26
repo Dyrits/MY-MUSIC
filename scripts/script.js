@@ -76,7 +76,6 @@ document.querySelectorAll(".card").forEach((card, index) => {
 })
 
 
-
 // FUNCTIONS
 
 // Play and change button icon
