@@ -1,34 +1,36 @@
 # My Music
 
-# More about this project
+A music-themed website built with HTML, CSS and Bootstrap, as practical work for an ENI course.
 
-### Related course
-ENI | LE DÉVELOPPEMENT WEB COTE CLIENT 
-TRAVAUX PRATIQUE : Module 7 : Un framework CSS: Bootstrap || Module 08 : Le langage JavaScript
+## About The Project
 
-### Description of the project by ENI
-[Module 7](https://github.com/Dyrits/MY-MUSIC/blob/master/Module%2007%20-%20Enonc%C3%A9%20TP%20-%20Application%20My%20Music.pdf)  
-[Module 8](https://github.com/Dyrits/MY-MUSIC/blob/master/Module%2008%20-%20Enonc%C3%A9%20TP%2002%20-%20Fonctionnalit%C3%A9s%20JavaScript%20sur%20My%20Music.pdf)
+Practical work for the ENI course "Le développement web côté client": Module 7 (a CSS framework: Bootstrap) and Module 8 (JavaScript). The original assignments (in French) are available in the repository:
 
-### Technologies | Libraries | Frameworks | Tools  
-- HTML
-- CSS
-- Bootstrap
+- [Module 7 - Application My Music](https://github.com/Dyrits/MY-MUSIC/blob/master/Module%2007%20-%20Enonc%C3%A9%20TP%20-%20Application%20My%20Music.pdf)
+- [Module 8 - Fonctionnalités JavaScript sur My Music](https://github.com/Dyrits/MY-MUSIC/blob/master/Module%2008%20-%20Enonc%C3%A9%20TP%2002%20-%20Fonctionnalit%C3%A9s%20JavaScript%20sur%20My%20Music.pdf)
 
-### Details | Comments
-- This project has been freely made from scratch following global instructions.  
+From the author's notes: the project was freely made from scratch following global instructions, and the uploaded version does not include the .wav files.
 
-The version uploaded online doesn't include .wav files.
-
-### CodePen
-You can find this project on CodePen.
-URL: https://codepen.io/Dyrits/full/NWxRgjj
+The project can also be found on CodePen: [codepen.io/Dyrits/full/NWxRgjj](https://codepen.io/Dyrits/full/NWxRgjj)
 
 ### Status
-Completed
 
-#### Last update
-26/06/2020
+Completed, per the original README.
 
-#### Last update (README.md)
-26/06/2020
+## Built With
+
+- HTML / CSS
+- Bootstrap
+- JavaScript
+
+## Getting Started
+
+Open `index.html` in a browser.
+
+## License
+
+No license file is present in this repository.
+
+## Contact
+
+Dylan J. Gerrits - [GitHub](https://github.com/Dyrits)
